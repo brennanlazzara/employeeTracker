@@ -19,7 +19,7 @@ function employee(){
         type: "list",
         name: "employerToDo",
         choices: ["View All Employees", "View all empolyees by department", 
-        "View all empolyees by department", "View all employess by manager", "Add employee", "Remove employee", "update employee role", "update employee manager"],
+        "View all employess by manager", "Add employee", "Remove employee", "update employee role", "update employee manager"],
         message: "What would you like to do?"
     }]);
 };
@@ -37,12 +37,7 @@ function employeeAdd(){
     name: "employeeFirstName",
     message: "What employees last name?"
 }, 
-{
-    type: "list",
-    name: "employeRoles",
-    choices: [],
-    message: "What would you like to do?"
-}
+
 ])  
     });
 } 
@@ -52,15 +47,20 @@ function start() {
     console.log('hello');
     employee().then(function(answer){
         answer.employerToDo
-        if (
-            answer.employerToDo === "Add employee"
-        )
-        {
-            employeeAdd()
-        }
-        if(
-            
-        )
+        if (answer.employerToDo === "Add employee")
+        {empAdd()}
+        if(answer.employerToDo === "Remove employee")
+        {empRemove()}
+        if(answer.employerToDo === "View All Employees")
+        {viewAllEmp()}
+        if(answer.employerToDo === "View all empolyees by department")
+        {viewAllEmpByDepartment()}
+        if(answer.employerToDo === "View all employess by manager")
+        {viewAllEmpByManager()}
+        if(answer.employerToDo === "update employee role")
+        {updateEmpRole()}
+        if(answer.employerToDo === "update employee manager")
+        {updateManagerRole()}
     })
 }
 
