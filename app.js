@@ -7,14 +7,66 @@ let connection = mysql.createConnection({
     port: 3306,
     user: 'root',
     password: 'Rosebud13!',
-    database: 'employeeDB'
+    database: 'employee_trackerDB'
 });
 connection.connect((err) => {
     if (err) throw err;
-    start();
+   start();
 });
+
+function employee(){
+    return inquirer.prompt([{
+        type: "list",
+        name: "employerToDo",
+        choices: ["View All Employees", "View all empolyees by department", 
+        "View all empolyees by department", "View all employess by manager", "Add employee", "Remove employee", "update employee role", "update employee manager"],
+        message: "What would you like to do?"
+    }]);
+};
+
+function employeeAdd(){
+    connection.query("SELECT * FROM role").then(function(response){
+        console.log(response);
+           return inquirer([{
+        type: "input",
+        name: "employeeFirstName",
+        message: "What employees first name?"
+    },
+{
+    type: "input",
+    name: "employeeFirstName",
+    message: "What employees last name?"
+}, 
+{
+    type: "list",
+    name: "employeRoles",
+    choices: [],
+    message: "What would you like to do?"
+}
+])  
+    });
+} 
+
 
 function start() {
     console.log('hello');
+    employee().then(function(answer){
+        answer.employerToDo
+        if (
+            answer.employerToDo === "Add employee"
+        )
+        {
+            employeeAdd()
+        }
+        if(
+            
+        )
+    })
 }
-connection.end();
+
+
+
+
+// who is the employees role? (list)
+// who is this employees manager?
+
